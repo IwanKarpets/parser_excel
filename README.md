@@ -12,10 +12,10 @@ database.php - конфигурация базы данных
 Для работы приложения необходимо создать базу данных и импортировать в нее дамп, который находится в папке dump_database.
 
 html код и представления, находятся в папке views: две страницы: home и products.
-Роутинг находится в папке config файл routes. Обработка excel файла происходит в папке Controllers файл HomeController
-для обработки excel использовалась библиотека PHPSpreadsheets
-вывод отфильтрованнных данных происходит в файле ProductsController
-методы взаимодействия с базой данных находятся kernel/Database файл Database
+Роутинг находится в папке config файл routes. Обработка excel файла происходит в папке Controllers файл HomeControllerб,
+для обработки excel использовалась библиотека PHPSpreadsheets,
+вывод отфильтрованнных данных происходит в файле ProductsController.
+Методы взаимодействия с базой данных находятся kernel/Database файл Database
 в файле HomeController метод store, происходит запись в базу данных $this->database()->insert()
 что бы была возможность парсить файл повторно, при запуске Homecontroller метод index, происходит удаление всех записей из базы данных
 Зависимости: composer require "ext-gd:*" --ignore-platform-reqs
