@@ -79,12 +79,5 @@ abstract class Controller
         $this->database = $database;
     }
 
-    function validateRow(string $article, string $name, float $price): bool
-    {
 
-        return ($price >= 1400 && $price <= 2500) ||
-            ($name == 'Viatti Vettore Brina V-525' && $price > 3500) ||
-            ($article > 100000 && $article < 1000000) ||
-            (str_starts_with($article, 'E4100') && str_ends_with($article, 'E4723') && $price >= 5500 && $price <= 7000 && strpos($name, '104R') !== false);
-    }
 }

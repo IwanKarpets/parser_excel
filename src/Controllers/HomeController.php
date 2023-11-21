@@ -29,6 +29,15 @@ class HomeController extends Controller
         $priceColumn = $_POST['priceCol'];
         $stockColumn = $_POST['stockCol'];
         $numRows = !empty($_POST['numRows']) ? $_POST['numRows'] : $endRow;
+        $minPrice = !empty($_POST['min_price']) ? $_POST['min_price']:null;
+        $maxPrice = !empty($_POST['max_price']) ? $_POST['max_price']:null;
+        $name = !empty($_POST['name']) ? $_POST['name']:null;
+        $minArticle = !empty($_POST['min_article']) ? $_POST['min_article'] : null;
+        $maxArticle = !empty($_POST['max_article']) ? $_POST['max_article'] : null;
+        $startArticle = !empty($_POST['start_article']) ? $_POST['start_article'] : null;
+        $endArticle = !empty($_POST['end_article']) ? $_POST['end_article'] : null;
+
+
 
 
         if (
@@ -49,8 +58,16 @@ class HomeController extends Controller
 
 
 
-            if ($article === null || !$this->validateRow($article, $productName, $price)) {
-                continue;
+            if ($article === null ||
+                    !((!$name || $name === $productName || str_contains( strtoupper($productName), strtoupper( trim($name)))) &&
+                    (!$minArticle || $minArticle <= $article) &&
+                    (!$maxArticle || $maxArticle >= $article) &&
+                    (!$minPrice  || $minPrice <= $price) &&
+                    (!$maxPrice  || $maxPrice >= $price) &&
+                    (!$startArticle || str_starts_with( strtoupper($article), strtoupper( trim($startArticle)))) &&
+                    (!$endArticle || str_ends_with( strtoupper($article), strtoupper( trim($endArticle)))))
+            ) {
+                        continue;
             }
 
             $data = [

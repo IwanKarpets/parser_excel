@@ -15,26 +15,31 @@ use App\Kernel\View\View;
 
 <a href="/home">На главную</a>
 <?php
-echo "<table border='1'>";
-// Show array keys as table header
-echo "<tr>";
-foreach ($products[0] as $key => $value) {
-    echo "<th>{$key}</th>";
-}
-echo "</tr>";
+if (!isset($products)) {
+    echo "Нет данных для отображения";
+    // You can choose to exit the script here if you want.
+    // exit;
+} else {
+    echo "<table border='1'>";
 
-// Show array values
-foreach ($products as $record) {
+    // Show array keys as table header
     echo "<tr>";
-    foreach ($record as $key => $value) {
-        echo "<td>{$value}</td>";
+    foreach ($products[0] as $key => $value) {
+        echo "<th>{$key}</th>";
     }
     echo "</tr>";
+
+    // Show array values
+    foreach ($products as $record) {
+        echo "<tr>";
+        foreach ($record as $key => $value) {
+            echo "<td>{$value}</td>";
+        }
+        echo "</tr>";
+    }
+
+    echo "</table>";
 }
-
-echo "</table>"; ?>
-<?php
-
 
 
 ?>
