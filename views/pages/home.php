@@ -39,28 +39,4 @@ use App\Kernel\View\View;
 
 
 
-
-
-
-
-
-
-
-
-<!--<form action="/" method="post">-->
-<!--    <h1>Parse Excel</h1>-->
-<!--    Колонка Артикула: <input type='text' maxlength="2" name='articleCol' placeholder="A1" required /><br />-->
-<!--    Колонка Названия Продукта: <input type='text' maxlength="2" name='nameCol' placeholder="B1" required /><br />-->
-<!--    Колонка Цены: <input type='text' maxlength="2" name='priceCol' placeholder="C1" required /><br />-->
-<!--    Минимальная Цена: <input type='number' name='minPrice' required /> <br />-->
-<!--    Максимальная Цена: <input type='number' name='maxPrice' required /> <br />-->
-<!--    Колонка Отстатков: <input type='text' maxlength="2" name='stockCol' placeholder="D1" required /><br />-->
-<!--    Количество строк (Можно оставить пустым): <input type='number' name='numRows' /><br />-->
-<!--    <input type='submit' value='Парсить' />-->
-<!---->
-<!---->
-<!--</form>-->
-
-
-
 <?php $view->component('end') ?>

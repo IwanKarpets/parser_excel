@@ -11,14 +11,13 @@ use App\Kernel\View\View;
 
 
 <?php $view->component('start') ?>
-<h1>Products Page</h1>
+<h1 style="text-align: center">Products Page</h1>
 
 <a href="/home">На главную</a>
 <?php
 if (!isset($products)) {
     echo "Нет данных для отображения";
-    // You can choose to exit the script here if you want.
-    // exit;
+
 } else {
     echo "<table border='1'>";
 

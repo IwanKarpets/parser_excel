@@ -28,7 +28,7 @@ class HomeController extends Controller
         $nameColumn = $_POST['nameCol'];
         $priceColumn = $_POST['priceCol'];
         $stockColumn = $_POST['stockCol'];
-        $numRows = !empty($_POST['numRows']) ? $_POST['numRows'] : $endRow;
+
         $minPrice = !empty($_POST['min_price']) ? $_POST['min_price']:null;
         $maxPrice = !empty($_POST['max_price']) ? $_POST['max_price']:null;
         $name = !empty($_POST['name']) ? $_POST['name']:null;
@@ -37,8 +37,7 @@ class HomeController extends Controller
         $startArticle = !empty($_POST['start_article']) ? $_POST['start_article'] : null;
         $endArticle = !empty($_POST['end_article']) ? $_POST['end_article'] : null;
 
-
-
+        $productsArray = [];
 
         if (
             !preg_match('/A1/', $articleColumn) ||
@@ -49,7 +48,7 @@ class HomeController extends Controller
             echo 'Неправильный ввод данных';
             exit;
         }
-        for ($row = 1; $row <= $numRows; $row++) {
+        for ($row = 1; $row <= $endRow; $row++) {
 
             $article = $worksheet->getCell($articleColumn . $row)->getValue();
             $productName = $worksheet->getCell($nameColumn . $row)->getValue();
@@ -76,7 +75,27 @@ class HomeController extends Controller
                 'price' => $price,
                 'stock' => $stock
             ];
-            $this->db()->insert('products', $data);
+
+            $productsArray[] = $data;
+
+        }
+
+        $numRows = !empty($_POST['numRows']) ? $_POST['numRows'] : count($productsArray);
+
+        for ( $i=0; $i<$numRows; $i++){
+            if(!$productsArray[$i]){
+                break;
+                //если количество строк полученных из инпута больше чем элементов массива, получаем все длступные элементы и выходим из цикла
+            }
+
+            $product = [
+                'article' =>$productsArray[$i]['article'],
+                'name' => $productsArray[$i]['name'],
+                'price' => $productsArray[$i]['price'],
+                'stock' =>$productsArray[$i]['stock']
+            ];
+
+            $this->db()->insert('products', $product);
         }
 
         $this->redirect('/products');
